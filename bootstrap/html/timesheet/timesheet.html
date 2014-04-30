@@ -1,0 +1,74 @@
+<html>
+
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="month time sheet">
+    <meta name="author" content="Mahieddine M. ICHIR">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<body>
+
+<div class="page-header row">
+<div class="col-md-8 text-left">
+	<h4>Mahieddine M. ICHIR</h4>
+	02 Rue du Languedoc, 91300 Massy<br /> <a
+	ref="mailto:mahieddine.ichir@free.fr">mahieddine.ichir@free.fr</a><br />
+	Tél: +33 6 24 94 19 36
+</div>
+<div class="col-md-4 text-left">
+	<h4>DOCAPOST DPS</h4>
+	10 Avenue Charles de Gaulle<br /> 94673 Charenton-le-Pont Cedex
+</div>
+</div>
+
+<div ng-init="init()">
+
+	<div class="text-left">
+		<h4>Période : </h4>
+		<select class="select" ng-init="month = months[monthIndex]" ng-model="month" ng-options="m.label for m in months" ng-change="change()"></select>
+		<select class="select" ng-init="year = years[yearIndex]" ng-model="year" ng-options="y for y in years" ng-change="change()"></select>
+	</div>
+
+ 	<table class="table table-striped top20">
+ 		<tr>
+ 			<th />
+ 			<th ng-repeat="day in data.days" class="row" >{{day.day}}</th>
+ 		</tr>
+ 		<tr>
+ 			<th>Développement & Architecture Java JEE</th>
+ 			<td ng-repeat="day in data.days" class="day{{day.type}}" ng-click="changeType(day)">{{day.rate}}</td>
+ 		</tr>
+ 	</table>
+	
+	<div class="text-left">
+		Nombre d'unités d'oeuvres réceptionnées (JH): {{getTotal()}}<br />
+		Nombre de jours de congés: {{getTotalOff()}}<br />
+	</div>							
+
+	<div ng-hide='data.validated'>
+		<button class="btn btn-primary" style="float:right;" ng-click="save()">Save</button>
+		<button class="btn btn-primary" style="float:right;" ng-click="validate()">Validate</button>
+	</div>
+	
+</div>
+
+<div class="top20 row">
+<div class="col-md-8 text-left">
+	<h5>Consultant : Mahieddine M. ICHIR</h5>
+	Date : <input type="date" style="border:none" />
+	<div class="top5">Observations : <br /></div>
+	Visa consultant :
+</div>
+
+<div class="col-md-4 text-left">
+	<h5>Réception : Y. Decillia, Docapost DPS</h5>
+	Date : <input type="date" style="border:none" />
+	<div class="top5">Observations : <br /></div>
+	Visa client :
+</div>
+</div>
+
+</body>
+</html>
