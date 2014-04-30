@@ -1,0 +1,92 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="month invoice">
+    <meta name="author" content="Mahieddine M. ICHIR">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="page-header row">
+	<div class="text-right">Massy, le {{today | date:'dd/MM/yyyy'}}</div>
+	<div class="row">
+		<div class="col-md-8 text-left">
+			<h4>Mahieddine M. ICHIR</h4>
+			Consultant Java JEE<br/>
+			02 Rue du Languedoc<br />
+			91300 Massy<br />
+			Tél: +33 6 24 94 19 36<br />
+			mail: <a href="mailto:mahieddine.ichir@free.fr">mahieddine.ichir@free.fr</a><br />
+			web: <a href="http//java.michir.com">http//java.michir.com</a>
+		</div>
+		<div class="col-md-4 text-left">
+			<h4>Maileva</h4>
+			10 Avenue Charles de Gaulle<br />
+			94673 Charenton-le-Pont Cedex<br />
+			<div class="top20">N° Commande {{nCommande}}</div>
+		</div>
+	</div>
+</div>
+
+<div class="container" ng-init="init()">
+	<div class="row text-left">
+		<h4>Facture N° {{factureNumber()}}</h4>
+		Période de 01/04/2014 au 30/04/2014
+	</div>
+
+	<table class="table table-striped top20">
+		<tr>
+			<th>Description</th>
+			<th class="center">Quantité (Jours)</th>
+			<th class="center">Tarif (HT)</th>
+			<th class="center">Sous total</th>
+		</tr>
+		<tr>
+			<td>Développement Java JEE</td>
+			<td class="numbers">{{getTotal()}}</td>
+			<td class="numbers">{{tarif| euro}}</td>
+			<td class="numbers">{{tarif * getTotal()| euro}}</td>
+		</tr>
+		<tr>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td>Total (HT)</td>
+			<td />
+			<td class="numbers">{{tarif| euro}}</td>
+			<td class="numbers">{{x = tarif * getTotal()| euro}}</td>
+		</tr>
+		<tr>
+			<td>Montant TVA ({{tva}} %)</td>
+			<td />
+			<td class="numbers">{{tva * tarif / 100 | euro}}</td>
+			<td class="numbers">{{y = x * tva / 100| euro}}</td>
+		</tr>
+		<tr>
+			<td>Total TTC</td>
+			<td />
+			<td />
+			<td>{{x + y | euro}}</td>
+		</tr>
+	</table>
+</div>
+
+<div class="page-footer top20 text-muted">
+	<div class="row text-left">
+		TVA acquittée sur les encaissements, N° : FR 2953353272700013<br />
+		Pénalités de retard : 3 fois le taux d'intérêt légal annuel<br />
+		Coordonnées bancaires : ING DIRECT, (BIC) IIDFFR21XXX - (IBAN) FR76 1455 9001 0040 0005 9560 931
+	</div>
+	<div class="row top20">
+		Mahieddine M. ICHIR, Conseil & Développement JAVA JEE <br />
+		02 Rue du Languedoc, 91300 Massy<br />
+		N° SIREN 533 532 727
+	</div>
+</div>
